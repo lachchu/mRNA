@@ -1,4 +1,3 @@
-# hello-world
 Another Repository
 This is Another Repository Test.
 Hi - Amzad Here, This is Test for GitHub.
