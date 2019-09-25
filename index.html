@@ -5,18 +5,18 @@
 
   <p>Before the script...</p>
 
-  <script>
-    function myFunction() {
-      alert("The form was submitted");
-    }
-  </script>
-
   <p>...After the script.</p>
   <form onsubmit="myFunction()">
     RNA sequence: <input type="text" name="rna"><br>
     Messenger RNA sequence: <input type="text" name="mrna"><br>
     <input type="submit" value="Generate">
   </form>
+  
+   <script>
+     function myFunction() {
+       alert("The form was submitted");
+     }
+   </script>
 
 </body>
 
