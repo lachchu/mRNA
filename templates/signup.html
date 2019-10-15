@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>miRNASNP Sequencing</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333333;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111111;
+        }
+    </style>
+ 
+    <link href="templates/signup.css" rel="stylesheet">
+    <script src="static/js/jquery-3.4.1.js"> </script>
+    <!--<script src="http://localhost:5000/static/js/jquery-3.4.1.min.js"></script>-->
+        <script>
+        
+           
+        $(function() {
+            $('button#btnSignUp').click(function() {            
+                $.ajax({
+                    url: '/signUp',
+                    data: $('form').serialize(),
+                    type: 'POST',
+                    success: function(response) {
+                    $("#outputData").replaceWith("<pre id='outputData'></pre>");
+                    console.log(response)
+                    var data = ""
+                    $.each(response.result, function(i,item){
+                    $("#outputData").append("<br>"); 
+                    $("#outputData").append(item);
+                    $("#outputData").append("<br>");              
+                    });                    
+                    
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+          });
+        </script>
+       
+    
+    
+  </head>
+  <!-- console.log(response);
+  data += item.toString()
+                    data +="<br>" 
+  data = response.result[0][1];                                 
+                    
+                    console.log(data);-->
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="/">Home</a></li>
+            <li role="presentation"><a href="#">TBD</a></li>
+            <li role="presentation" class="active"><a href="showSignUp">SNPMatch</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">miRNASNP SequencingMRNA</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>MRNA Sequence Matching Using KMP Algorithm</h1>
+        <form class="form-signin" action="/signUp" method="post" role="form">
+        <label for="inputRNA" class="sr-only">RNA sequence</label>
+        <input type="inputRNA" name="inputRNA" id="inputRNA" class="form-control" placeholder="RNA" required autofocus>
+        <label for="inputmRNA" class="sr-only">Messenger RNA sequence</label>
+        <input type="inputmRNA" name="inputmRNA" id="inputmRNA" class="form-control" placeholder="mRNA" required autofocus>
+         
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">SNPMatch</button>
+        </form>
+        
+      
+      </div>
+      
+      <div id="TableCont">
+      <pre id="outputData">      
+      </pre>
+      </div>
+ 
+      <footer class="footer">
+        <p>&copy; Troy University Computer Science Dept</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
